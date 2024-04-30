@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float sprintDecreaseRate = 15f;
     public float sprintIncreaseRate = 5f;
     public float highsprintIncreaseRate = 10f;
-    public Slider Sprint;
+    private Slider Sprint;
     private bool sprintReady = true;
     private bool sprintReload = true;
     private bool firstExecution = false;
@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _controller = GetComponent<CharacterController>();
         headBob = GetComponent<HeadBob>();
+        Sprint = GameObject.Find("Sprint").GetComponent<Slider>();
     }
 
     private void Update()
