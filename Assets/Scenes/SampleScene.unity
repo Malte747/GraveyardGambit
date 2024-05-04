@@ -1586,7 +1586,7 @@ Transform:
   m_GameObject: {fileID: 695126440}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.7259617, y: -0.15940516, z: -1.2786818}
+  m_LocalPosition: {x: -4.7259617, y: -0.171, z: -1.2786818}
   m_LocalScale: {x: 0.36927575, y: 1.5551071, z: 1.5551071}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2756,7 +2756,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
