@@ -14,6 +14,8 @@ public class EnemyAi : MonoBehaviour
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
+    public Transform[] patrolPoints;
+    public int targetPoint;
 
     //Attacking
     public float timeBetweenAttacks;
@@ -27,6 +29,7 @@ public class EnemyAi : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        targetPoint = 0;
     }
 
     private void Update()
@@ -41,23 +44,32 @@ public class EnemyAi : MonoBehaviour
 
     private void Patroling()
     {
-        if (!walkPointSet) SearchWalkPoint();
+        if (!walkPointSet) 
+        {
+            SearchWalkPoint();
+        }
 
-        if(walkPointSet)
+        else if(walkPointSet)
         agent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
         
         if (distanceToWalkPoint.magnitude < 1f)
+        {
         walkPointSet = false;
+        targetPoint++;
+        if(targetPoint >= patrolPoints.Length)
+        {
+            targetPoint = 0;
+        }
+        }
+
     }
 
     private void SearchWalkPoint()
     {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z * randomZ);
+        walkPoint = new Vector3(patrolPoints[targetPoint].position.x , transform.position.y, patrolPoints[targetPoint].position.z);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
         walkPointSet = true;
