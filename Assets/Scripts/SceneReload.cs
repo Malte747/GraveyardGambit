@@ -3,13 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class ReloadScene : MonoBehaviour
 {
-    void Update()
+    LevelGold levelGold;
+
+    void Start()
+    {
+        levelGold = GameObject.Find("GM").GetComponent<LevelGold>();
+    }
+        void Update()
     {
         // Überprüfen, ob die R-Taste gedrückt wurde
         if (Input.GetKeyDown(KeyCode.R))
         {
-            // Die aktuelle Szene neu laden
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            levelGold.WinGame();
+            
         }
                 if (Input.GetKeyDown(KeyCode.Escape))
         {

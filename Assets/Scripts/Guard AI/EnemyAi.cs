@@ -3,17 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 public class EnemyAi : MonoBehaviour
 {
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
+    private Animator anim;
+    LevelGold levelGold;
+    public float walkSpeed = 3;
+    public float runSpeed = 5;
 
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
-    public float walkPointRange;
     public Transform[] patrolPoints;
     public int targetPoint;
 
@@ -24,26 +28,99 @@ public class EnemyAi : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    public bool chased = false;
+
+    // FOV
+
+    public float radius;
+    [Range(0,360)]
+    public float angle;
+
+    public LayerMask targetMask;
+    public LayerMask obstructionMask;
+
 
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        StartCoroutine(FOVRoutine());
         targetPoint = 0;
+        anim = GetComponent<Animator>();
+        levelGold = GameObject.Find("GM").GetComponent<LevelGold>();
+        
     }
 
     private void Update()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
+        
+        if (!playerInSightRange && !playerInAttackRange && !chased) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        if (!playerInSightRange && !playerInAttackRange && chased) StartCoroutine(TurnAround());;
+
+
     }
+
+    private IEnumerator FOVRoutine()
+    {
+        WaitForSeconds wait = new WaitForSeconds(0.2f);
+
+        while (true)
+        {
+            yield return wait;
+            FieldOfViewCheck();
+        }
+    }
+
+    private void FieldOfViewCheck()
+    {
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
+
+        if (rangeChecks.Length != 0)
+        {
+            Transform target = rangeChecks[0].transform;
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
+
+            if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                    StartCoroutine(CheckSphere());;
+
+                
+            }
+           
+        }
+       
+    }
+
+private IEnumerator CheckSphere()
+{
+    while (true)
+    {
+        // Check, ob der Spieler im Sichtbereich ist
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+
+        // Wenn der Spieler nicht mehr im Sichtbereich ist, beende die Coroutine
+        if (!playerInSightRange)
+        {
+            yield break;
+        }
+
+        // Warte eine Frame, um die Schleife erneut auszuführen
+        yield return null;
+    }
+}
+
 
     private void Patroling()
     {
+        agent.speed = walkSpeed;
+        anim.SetBool("Chasing", false);
         if (!walkPointSet) 
         {
             SearchWalkPoint();
@@ -66,6 +143,16 @@ public class EnemyAi : MonoBehaviour
 
     }
 
+        private IEnumerator TurnAround()
+    {
+        agent.SetDestination(transform.position);
+        anim.SetBool("Chasing", false);
+        anim.SetBool("Turning", true);
+        yield return new WaitForSeconds(5f); 
+        anim.SetBool("Turning", false);
+        chased = false;
+    }
+
     private void SearchWalkPoint()
     {
 
@@ -78,6 +165,10 @@ public class EnemyAi : MonoBehaviour
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
+        agent.speed = runSpeed;
+        chased = true;
+        anim.SetBool("Chasing", true);
+        anim.SetBool("Turning", false);
     }
 
     private void AttackPlayer()
@@ -90,6 +181,7 @@ public class EnemyAi : MonoBehaviour
         {
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            levelGold.LoseGame();
         }
     }
 
