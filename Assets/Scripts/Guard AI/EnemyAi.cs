@@ -11,6 +11,7 @@ public class EnemyAi : MonoBehaviour
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
     private Animator anim;
+    LevelGold levelGold;
     public float walkSpeed = 3;
     public float runSpeed = 5;
 
@@ -46,6 +47,7 @@ public class EnemyAi : MonoBehaviour
         StartCoroutine(FOVRoutine());
         targetPoint = 0;
         anim = GetComponent<Animator>();
+        levelGold = GameObject.Find("GM").GetComponent<LevelGold>();
         
     }
 
@@ -179,6 +181,7 @@ private IEnumerator CheckSphere()
         {
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            levelGold.LoseGame();
         }
     }
 
