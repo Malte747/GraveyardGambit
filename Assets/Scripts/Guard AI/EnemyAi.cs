@@ -1,9 +1,9 @@
-using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Unity.VisualScripting;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class EnemyAi : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class EnemyAi : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
     private Animator anim;
     LevelGold levelGold;
+    GetChased getchased;
     public float walkSpeed = 3;
     public float runSpeed = 5;
 
@@ -42,13 +43,19 @@ public class EnemyAi : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        
         agent = GetComponent<NavMeshAgent>();
         StartCoroutine(FOVRoutine());
         targetPoint = 0;
         anim = GetComponent<Animator>();
         levelGold = GameObject.Find("GM").GetComponent<LevelGold>();
+        getchased = GameObject.Find("PostProcessing").GetComponent<GetChased>();
         
+    }
+
+    private void Start()
+    {
+        player = GameObject.Find("Player(Clone)").transform;
     }
 
     private void Update()
@@ -121,6 +128,7 @@ private IEnumerator CheckSphere()
     {
         agent.speed = walkSpeed;
         anim.SetBool("Chasing", false);
+        getchased.DontChase();
         if (!walkPointSet) 
         {
             SearchWalkPoint();
@@ -148,6 +156,7 @@ private IEnumerator CheckSphere()
         agent.SetDestination(transform.position);
         anim.SetBool("Chasing", false);
         anim.SetBool("Turning", true);
+        getchased.DontChase();
         yield return new WaitForSeconds(5f); 
         anim.SetBool("Turning", false);
         chased = false;
@@ -169,6 +178,7 @@ private IEnumerator CheckSphere()
         chased = true;
         anim.SetBool("Chasing", true);
         anim.SetBool("Turning", false);
+        getchased.Chase();
     }
 
     private void AttackPlayer()

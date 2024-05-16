@@ -8,6 +8,7 @@ public class GraveInteract : MonoBehaviour, IInteractable
          Interactor interactor;
         public float getGoldPercent = 49f;
         public Canvas canvastext;
+        public GameObject particlesystem;
         
 
         void Start()
@@ -41,11 +42,17 @@ public class GraveInteract : MonoBehaviour, IInteractable
                     }
                 
             }
+            particlesystem.gameObject.SetActive(true);
             Destroy(gameObject);
         }
 
         public void Visible()
         {
              canvastext.gameObject.SetActive(true);
+        }
+
+        public void InVisible()
+        {
+             canvastext.gameObject.SetActive(false);
         }
 }

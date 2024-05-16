@@ -7,6 +7,7 @@ interface IInteractable
 {
     void Interact();
     void Visible();
+    void InVisible();
 }
 
 public class Interactor : MonoBehaviour
@@ -16,6 +17,7 @@ public class Interactor : MonoBehaviour
     public float holdDuration = 3f;
     
     private Slider openGrave;
+    public LayerMask ignoreLayers;
 
     [SerializeField] public bool seeTarget = false;
     [SerializeField] private float holdTimer = 0f;
@@ -31,13 +33,13 @@ public class Interactor : MonoBehaviour
 {
     openGrave.value = holdTimer;
     Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
-    if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange))
+   
+    if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange, ~ignoreLayers))
     {
         if (hitInfo.collider.CompareTag("Grave") && hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
         {
             interactObj.Visible();
             seeTarget = true;
-            
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -48,6 +50,7 @@ public class Interactor : MonoBehaviour
             {
                 holdTimer += Time.deltaTime;
                 openGrave.gameObject.SetActive(true);
+                interactObj.InVisible();
 
                 if (holdTimer >= holdDuration)
                 {
@@ -79,7 +82,7 @@ public class Interactor : MonoBehaviour
     private void InteractAfterDelay()
     {
         Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
-        if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange))
+        if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange, ~ignoreLayers))
         {
             if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
             {
