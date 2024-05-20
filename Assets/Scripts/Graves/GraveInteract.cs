@@ -6,9 +6,16 @@ public class GraveInteract : MonoBehaviour, IInteractable
 {
          LevelGold levelGold;
          Interactor interactor;
-        public float getGoldPercent = 49f;
+        public float getGoldPercent = 69f;
         public Canvas canvastext;
         public GameObject particlesystem;
+        public GameObject particlesystemCommon;
+        public GameObject particlesystemMedium;
+        public GameObject particlesystemRare;
+        public GameObject particlesystemEpic;
+        public GameObject particlesystemLegendary;
+        public int increaseChance;
+        Upgrades upgrades;
         
 
         void Start()
@@ -16,6 +23,8 @@ public class GraveInteract : MonoBehaviour, IInteractable
             levelGold = GameObject.Find("GM").GetComponent<LevelGold>();
             interactor = GameObject.Find("Cam_holder").GetComponent<Interactor>();
             canvastext.gameObject.SetActive(false);
+            upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
+            increaseChance = upgrades.increaseChance;
         }
 
         void Update()
@@ -34,7 +43,40 @@ public class GraveInteract : MonoBehaviour, IInteractable
                     int randomAmount = Random.Range(0, 100);
                     if (randomAmount <= getGoldPercent)
                     {
-                        levelGold.IncreaseGold();
+                        int randomChance = Random.Range(0, 100);
+                        int finalChance = randomChance + increaseChance;
+
+                        if (finalChance <= 35)
+                        {
+                            levelGold.IncreaseGold(10);
+                            particlesystemCommon.gameObject.SetActive(true);
+                            Debug.Log("Common " + randomChance + " " + finalChance);
+                        }
+                    else if (finalChance <= 65)
+                        {
+                            levelGold.IncreaseGold(15);
+                            particlesystemMedium.gameObject.SetActive(true);
+                            Debug.Log("Medium " + randomChance + " " + finalChance);
+                        }
+                    else if (finalChance <= 85)
+                        {
+                            levelGold.IncreaseGold(25);
+                            particlesystemRare.gameObject.SetActive(true);
+                            Debug.Log("Rare " + randomChance + " " + finalChance);
+                        }
+                    else if (finalChance <= 95)
+                        {
+                            levelGold.IncreaseGold(35);
+                            particlesystemEpic.gameObject.SetActive(true);
+                            Debug.Log("Epic " + randomChance + " " + finalChance);
+                        }
+                    else 
+                        {
+                            levelGold.IncreaseGold(50);
+                            particlesystemLegendary.gameObject.SetActive(true);
+                            Debug.Log("Legendary " + randomChance + " " + finalChance);
+                        }
+
                     }
                     else
                     {

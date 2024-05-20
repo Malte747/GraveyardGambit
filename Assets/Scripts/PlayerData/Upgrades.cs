@@ -16,6 +16,12 @@ public class Upgrades : MonoBehaviour
     public int GlobalGold = 0;
     public int health = 3;
 
+
+    // Upgrades
+    public int increaseChance = 0;
+
+
+
     private void Awake()
     {
         

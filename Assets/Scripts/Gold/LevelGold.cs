@@ -9,8 +9,7 @@ public class LevelGold : MonoBehaviour
 
     public int levelGold = 0;
 
-    public int minGold = 30;
-    public int maxGold = 10;
+    
     private TMP_Text levelGoldText;
     Upgrades upgrades;
     SzeneManager szeneManager;
@@ -20,15 +19,15 @@ public class LevelGold : MonoBehaviour
     {
         levelGold = 0;
         levelGoldText = GameObject.Find("LevelGoldText").GetComponent<TextMeshProUGUI>();
-        upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
         szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
         levelGoldText.text = "Gold: " + levelGold;
+        upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
     }
 
-    public void IncreaseGold()
+    public void IncreaseGold(int getGold)
     {
-        int randomAmount = Random.Range(minGold, maxGold +1);
-        levelGold += randomAmount;
+        
+        levelGold += getGold;
         levelGoldText.text = "Gold: " + levelGold;
     }   
 
