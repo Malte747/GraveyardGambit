@@ -136,6 +136,7 @@ private IEnumerator CheckSphere()
 
         else if(walkPointSet)
         agent.SetDestination(walkPoint);
+        
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
         
