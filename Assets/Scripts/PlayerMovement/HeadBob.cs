@@ -68,7 +68,7 @@ _camera.localPosition += motion;
  private Vector3 FocusTarget()
  {
     Vector3 pos = new Vector3(transform.position.x, transform.position.y + _cameraHolder.localPosition.y, transform.position.z);
-    pos += _cameraHolder.forward * 15.0f;
+    pos += _cameraHolder.forward * 330.0f;
     return pos;
  }
 

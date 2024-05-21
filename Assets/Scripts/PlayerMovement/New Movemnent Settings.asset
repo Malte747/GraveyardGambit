@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138fb2de38aa88a4b96c7ee7f2211b43, type: 3}
   m_Name: New Movemnent Settings
   m_EditorClassIdentifier: 
-  _speed: 5
-  _sprint: 10
-  _slow: 3
+  _speed: 100
+  _sprint: 200
+  _slow: 70
   _jumpForce: 0
-  _antiBump: 4.5
-  _gravity: 30
+  _antiBump: 100
+  _gravity: 600

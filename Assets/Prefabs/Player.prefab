@@ -28,8 +28,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.63, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4974382472074368364}
   m_Father: {fileID: 3718207898994786936}
@@ -97,8 +97,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5994760736782303494}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -134,7 +134,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 10000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -281,7 +281,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.97, y: 2.149, z: -21.97}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 22.28, y: 22.28, z: 22.28}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3083169899926272503}
@@ -311,7 +311,7 @@ CharacterController:
   m_Height: 3.8
   m_Radius: 0.8
   m_SlopeLimit: 45
-  m_StepOffset: 0.7
+  m_StepOffset: 15.596
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enable: 1
-  _amplitude: 0.015
+  _amplitude: 0.0098
   _frequency: 10
   _camera: {fileID: 4974382472074368364}
   _cameraHolder: {fileID: 5994760736782303494}
