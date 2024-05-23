@@ -128,7 +128,6 @@ private IEnumerator CheckSphere()
     {
         agent.speed = walkSpeed;
         anim.SetBool("Chasing", false);
-        getchased.DontChase();
         if (!walkPointSet) 
         {
             SearchWalkPoint();

@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6498361496806875382
 Transform:
   m_ObjectHideFlags: 0
@@ -1192,7 +1192,7 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0.7402997
         - serializedVersion: 3
-          time: 0.76834124
+          time: 0.3005678
           value: 1
           inSlope: -0.17527089
           outSlope: -0.17527089
@@ -1201,7 +1201,7 @@ ParticleSystem:
           inWeight: 0.7223876
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
+          time: 0.45117188
           value: 0
           inSlope: 0
           outSlope: 0
@@ -6102,7 +6102,7 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0.7402997
         - serializedVersion: 3
-          time: 0.76834124
+          time: 0.3047182
           value: 1
           inSlope: -0.17527089
           outSlope: -0.17527089
@@ -6111,7 +6111,7 @@ ParticleSystem:
           inWeight: 0.7223876
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
+          time: 0.44903564
           value: 0
           inSlope: 0
           outSlope: 0
@@ -16643,7 +16643,7 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0.7402997
         - serializedVersion: 3
-          time: 0.76834124
+          time: 0.3005678
           value: 1
           inSlope: -0.17527089
           outSlope: -0.17527089
@@ -16652,7 +16652,7 @@ ParticleSystem:
           inWeight: 0.7223876
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
+          time: 0.45117188
           value: 0
           inSlope: 0
           outSlope: 0
@@ -21833,7 +21833,7 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0.7402997
         - serializedVersion: 3
-          time: 0.76834124
+          time: 0.29432696
           value: 1
           inSlope: -0.17527089
           outSlope: -0.17527089
@@ -21842,7 +21842,7 @@ ParticleSystem:
           inWeight: 0.7223876
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
+          time: 0.45111084
           value: 0
           inSlope: 0
           outSlope: 0
@@ -26989,7 +26989,7 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0.7402997
         - serializedVersion: 3
-          time: 0.76834124
+          time: 0.3005678
           value: 1
           inSlope: -0.17527089
           outSlope: -0.17527089
@@ -26998,7 +26998,7 @@ ParticleSystem:
           inWeight: 0.7223876
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
+          time: 0.44903564
           value: 0
           inSlope: 0
           outSlope: 0
@@ -30782,7 +30782,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e801abd1e07213e428f9698f05eebca4, type: 2}
+  - {fileID: 2100000, guid: a80d81cc2b7cde94283a4782325d445a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
