@@ -11,10 +11,17 @@ public class GraveText : MonoBehaviour
         camera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
-    void LateUpdate()
+void LateUpdate()
+{
+    Vector3 cameraForward = camera.transform.forward;
+    cameraForward.y = 0; // Setze die y-Komponente auf 0, um die Rotation auf der x-Achse zu ignorieren
+
+    if (cameraForward != Vector3.zero)
     {
-        transform.LookAt(transform.position + camera.transform.forward);
+        Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, targetRotation.eulerAngles.y, targetRotation.eulerAngles.z);
     }
+}
 
 
 }

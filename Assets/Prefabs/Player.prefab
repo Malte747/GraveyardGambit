@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InteractorSource: {fileID: 5994760736782303494}
-  InteractRange: 7
+  InteractRange: 190
   holdDuration: 3
   ignoreLayers:
     serializedVersion: 2
