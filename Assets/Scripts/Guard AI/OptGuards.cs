@@ -9,7 +9,7 @@ public class OptGuards : MonoBehaviour
     void Start()
     {
         szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
-        if (szeneManager.raid <= round)
+        if (szeneManager.raid < round)
         {
             this.gameObject.SetActive(false);
         }

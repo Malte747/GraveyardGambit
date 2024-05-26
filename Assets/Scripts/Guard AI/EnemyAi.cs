@@ -188,7 +188,7 @@ private IEnumerator CheckSphere()
         getchased.Chase();
     }
 
-    private void AttackPlayer()
+    public void AttackPlayer()
     {
         agent.SetDestination(transform.position);
 

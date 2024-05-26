@@ -39,7 +39,12 @@ public class GraveInteract : MonoBehaviour, IInteractable
         {
             if (levelGold != null)
             {
-                
+                    int randomCountdown = Random.Range(0, 100);
+                    Debug.Log(randomCountdown);
+                    if (randomCountdown <= levelGold.endTimerChance)
+                    {
+                        levelGold.EndTimer();
+                    }
                     int randomAmount = Random.Range(0, 100);
                     if (randomAmount <= getGoldPercent)
                     {

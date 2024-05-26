@@ -22,6 +22,7 @@ public class ReloadScene : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            levelGold.StopEndTimer();
             StartCoroutine(DisableController());
             endScreen.SetActive(true);
             levelEndGold = levelGold.levelGold;
