@@ -58,10 +58,11 @@ public class Upgrades : MonoBehaviour
         else
         {
         GlobalGoldText = GameObject.Find("GlobalGoldText").GetComponent<TextMeshProUGUI>();
+        GlobalGoldText.text = "Gold: " + GlobalGold;
         }
 
         
-        GlobalGoldText.text = "Gold: " + GlobalGold;
+        
     }
     public void SaveGold()
     {
