@@ -15,7 +15,7 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.9656516, y: 0.96214634, z: 1, w: -0.18413596}
+    m_Value: {x: 0.9656516, y: 0.96214634, z: 1, w: 0.12747863}
   midtones:
     m_OverrideState: 1
     m_Value: {x: 0.9556956, y: 0.9667717, z: 1, w: -0.08498582}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221518ef91623a7438a71fef23660601, type: 3}
   m_Name: WhiteBalance
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   temperature:
     m_OverrideState: 1
     m_Value: 0.8

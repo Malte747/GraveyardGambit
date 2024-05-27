@@ -29,9 +29,14 @@ public class LevelGold : MonoBehaviour
         szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
         levelGoldText.text = "Gold: " + levelGold;
         upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
-        endTimerChance = 10 + szeneManager.raid * 5;
+        endTimerChance = 0 + szeneManager.raid * 5;
     }
 
+    public void HigherEndTimerChance()
+    {
+        endTimerChance = endTimerChance + 5;
+        Debug.Log(endTimerChance);
+    }
     public void EndTimer()
     {
         if (!endTimerStarted)
